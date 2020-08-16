@@ -5,6 +5,8 @@ import os
 
 
 def tweet_image(url, message):
+    # Automatically check for a config file in the above-named directories
+    twitter = tbu.API(screen_name='traffic_west')
     filename = '/tmp/temp.jpg'
     request = requests.get(url, stream=True)
     if request.status_code == 200:
@@ -24,6 +26,3 @@ if __name__ == '__main__':
     data = [d for d in data if d['url'] != []]
     random_camera = np.random.choice(data)
     tweet_image(random_camera['url'][0], random_camera['location'])
-
-    # Automatically check for a config file in the above-named directories
-    twitter = tbu.API(screen_name='botUGS')
